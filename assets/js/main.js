@@ -1,39 +1,36 @@
-// Custom Scripts
-
 document.addEventListener('DOMContentLoaded', () => {
     const splashScreen = document.getElementById('splash-screen');
+    const splashLogo = document.getElementById('splash-logo'); // ロゴ要素を取得
     const body = document.body;
-
-    // Check if the splash screen has already been shown in this session
     const hasVisited = sessionStorage.getItem('hasVisited');
 
-    if (splashScreen && !hasVisited) {
-        // Add loading class to body
+    // スプラッシュスクリーンとロゴが存在し、かつ未訪問の場合
+    if (splashScreen && splashLogo && !hasVisited) {
         body.classList.add('loading');
-
-        // Set a flag in sessionStorage to indicate that the splash screen has been shown
         sessionStorage.setItem('hasVisited', 'true');
 
-        // Total animation duration: 2s per iteration * 2 iterations = 4s (from CSS animation)
-        // The CSS animation is now 2s with cubic-bezier, so total animation time is 2s * 2 iterations = 4s
-        const totalAnimationTime = 4000; // 2 seconds animation * 2 iterations
-
-        setTimeout(() => {
-            // Fade out the splash screen
+        // ロゴのアニメーション完了を待つ
+        splashLogo.addEventListener('animationend', () => {
+            // スクリーンのフェードアウトを開始
             splashScreen.classList.add('hidden');
+            
+            // この時点でスクロールを有効にする
+            body.classList.remove('loading');
 
-            // After the fade-out transition (1s), remove the loading class from body
-            setTimeout(() => {
-                body.classList.remove('loading');
-            }, 1000);
+            // フェードアウトのトランジション完了を待つ
+            splashScreen.addEventListener('transitionend', () => {
+                // 要素を完全に非表示にして、操作をブロックしないようにする
+                splashScreen.style.display = 'none';
+            }, { once: true });
 
-        }, totalAnimationTime);
+        }, { once: true });
+
     } else if (splashScreen && hasVisited) {
-        // If splash screen has been shown, hide it immediately and remove loading class
+        // 訪問済みの場合は、即座に非表示
         splashScreen.style.display = 'none';
         body.classList.remove('loading');
     } else {
-        // If there's no splash screen element (e.g., on other pages), just remove loading class
+        // スプラッシュがないページでは、常に操作可能
         body.classList.remove('loading');
     }
 });
