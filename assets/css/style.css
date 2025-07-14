@@ -56,6 +56,7 @@ body.loading header,
 body.loading main,
 body.loading footer {
     opacity: 0;
+    transition: none;
 }
 
 /* 読み込み完了後にコンテンツを滑らかに表示する */
@@ -155,7 +156,6 @@ body::after {
 }
 .navbar-custom .navbar-brand:hover, .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active {
     color: var(--luxe-white);
-    text-shadow: 0 0 8px var(--luxe-white), 0 0 15px var(--luxe-white);
 }
 
 .navbar-toggler {
@@ -201,7 +201,6 @@ body::after {
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    animation: subtle-glitch 0.8s 0.1s 1;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 215, 0, 0.3);
     margin-bottom: 2rem;
@@ -229,9 +228,45 @@ body::after {
     transform: translateY(-2px);
 }
 
+a.card-link:hover .card {
+    transform: scale(1.05);
+    border-color: var(--luxe-cyan);
+    box-shadow: 0 0 20px var(--luxe-cyan);
+}
+
+.card-title::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.5em;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+a.card-link:active .card {
+    border-color: var(--luxe-cyan);
+    box-shadow: 0 0 10px var(--luxe-cyan);
+}
+
+a.card-link:active .card-body {
+    color: var(--luxe-cyan) !important;
+}
+
+a.card-link:hover .card-title::after {
+    content: '→';
+    opacity: 1;
+}
+
 .bg-luxe-gold {
     background-color: var(--luxe-gold) !important;
     color: var(--luxe-bg) !important; /* 背景色に合わせてテキスト色を濃くします */
+    border: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-link {
+    text-decoration: none;
 }
 
 .bg-luxe-gold .card-header {
