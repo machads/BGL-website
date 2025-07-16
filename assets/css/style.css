@@ -273,3 +273,64 @@ a.card-link:hover .card-title::after {
     color: var(--luxe-bg);
     border-bottom: 1px solid rgba(13, 13, 26, 0.25);
 }
+
+/* --- News Page --- */
+.news-list {
+    margin-top: 2rem;
+}
+
+.news-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    text-align: left;
+    border-bottom: none;
+    padding-bottom: 0;
+    letter-spacing: 1px;
+}
+
+.news-title a {
+    color: var(--luxe-gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.news-title a:hover {
+    color: var(--luxe-white);
+    text-decoration: underline;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: var(--luxe-white);
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+}
+
+.news-excerpt {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--luxe-white);
+}
+
+/* --- Short Videos Page --- */
+.tiktok-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* 画像のアスペクト比を維持しつつ、指定サイズに収める */
+}
+
+/* --- Pricing Page --- */
+.border-cyan-glow {
+    border: 1px solid var(--luxe-cyan);
+    box-shadow: 0 0 20px var(--luxe-cyan);
+}
