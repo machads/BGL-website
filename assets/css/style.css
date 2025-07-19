@@ -12,8 +12,21 @@
 
 /* --- Animations --- */
 @keyframes flow-bg {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes animated-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes rotate-grid {
@@ -65,9 +78,11 @@ body::before {
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: -3;
     background: 
-        radial-gradient(circle at 15% 25%, rgba(255, 215, 0, 0.2) 0%, transparent 30%),
-        radial-gradient(circle at 85% 75%, rgba(0, 246, 255, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 35%);
+        radial-gradient(ellipse at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 60%, rgba(0, 246, 255, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse at 50% 95%, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+    background-size: 200% 200%;
+    animation: animated-gradient 20s ease infinite;
 }
 
 /* Layer 2: Animated Cyber Grid */
@@ -77,25 +92,11 @@ body::after {
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: -2;
     background-image:
-        /* Thin cyan lines */
-        linear-gradient(rgba(0, 246, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 246, 255, 0.1) 1px, transparent 1px),
-        /* Thicker gold lines */
-        linear-gradient(rgba(255, 215, 0, 0.07) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255, 215, 0, 0.07) 2px, transparent 2px),
-        /* Diagonal lines */
-        linear-gradient(45deg, rgba(0, 246, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
-    background-size: 
-        50px 50px, /* cyan grid */
-        50px 50px,
-        150px 150px, /* gold grid */
-        150px 150px,
-        100px 100px, /* diagonal grid */
-        100px 100px;
-    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-    animation: flow-bg 30s linear infinite;
-    opacity: 0.6; /* Increased opacity */
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: flow-bg 60s linear infinite;
+    opacity: 0.2;
 }
 
 /* Layer 3: Subtle Rotating Grid (now hidden) */
@@ -142,27 +143,21 @@ body::after {
 #splash-screen::before {
     z-index: 1;
     background: 
-        radial-gradient(circle at 15% 25%, rgba(255, 215, 0, 0.2) 0%, transparent 30%),
-        radial-gradient(circle at 85% 75%, rgba(0, 246, 255, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 35%);
+        radial-gradient(ellipse at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 60%, rgba(0, 246, 255, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse at 50% 95%, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+    background-size: 200% 200%;
+    animation: animated-gradient 20s ease infinite;
 }
 
 #splash-screen::after {
     z-index: 2;
     background-image:
-        linear-gradient(rgba(0, 246, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 246, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(rgba(255, 215, 0, 0.07) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255, 215, 0, 0.07) 2px, transparent 2px),
-        linear-gradient(45deg, rgba(0, 246, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
-    background-size: 
-        50px 50px, 50px 50px,
-        150px 150px, 150px 150px,
-        100px 100px, 100px 100px;
-    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
-    animation: flow-bg 30s linear infinite;
-    opacity: 0.6;
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: flow-bg 60s linear infinite;
+    opacity: 0.2;
 }
 
 #splash-screen.hidden {
@@ -256,7 +251,8 @@ body::after {
 
 /* --- Buttons --- */
 .btn-primary {
-    background: linear-gradient(45deg, var(--luxe-gold), #B8860B); /* Gold to DarkGoldenRod */
+    background: linear-gradient(45deg, var(--luxe-gold), #B8860B);
+    background-size: 150% 150%;
     border: 1px solid var(--luxe-gold);
     color: var(--luxe-bg);
     font-weight: bold;
@@ -269,8 +265,8 @@ body::after {
 }
 
 .btn-primary:hover {
-    background: var(--luxe-gold);
-    color: var(--luxe-bg);
+    background-position: right center; /* change the direction of the change here */
+    color: var(--luxe-white);
     box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
     transform: translateY(-2px);
 }
@@ -380,4 +376,15 @@ a.card-link:hover .card-title::after {
 .border-cyan-glow {
     border: 1px solid var(--luxe-cyan);
     box-shadow: 0 0 20px var(--luxe-cyan);
+}
+
+/* --- Games Page --- */
+.game-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 246, 255, 0.3);
 }

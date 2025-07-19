@@ -14,8 +14,19 @@
 </head>
 <body>
     <script>
-        // This script runs before the main.js and before rendering the body
-        if (sessionStorage.getItem('hasVisited') !== 'true') {
+        if (sessionStorage.getItem('hasVisited')) {
+            document.write('<style>#splash-screen { display: none; }</style>');
+            document.body.classList.remove('loading');
+        }
+    </script>
+    <script>
+        // Hide splash screen before DOM is fully loaded if it has been seen before
+        if (sessionStorage.getItem('hasVisited') === 'true') {
+            const style = document.createElement('style');
+            style.textContent = '#splash-screen { display: none; }';
+            document.head.appendChild(style);
+            document.body.classList.remove('loading');
+        } else {
             document.body.classList.add('loading');
         }
     </script>
