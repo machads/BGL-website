@@ -37,18 +37,18 @@
 
     <main class="container mt-4">
         <h1>お問い合わせ</h1>
-        <form action="mailto:crypto.macha.ds@gmail.com" method="post" enctype="text/plain">
+        <form action="https://formspree.io/f/meozezjk" method="POST">
             <div class="mb-3">
                 <label for="nameInput" class="form-label">お名前<span style="color: yellow;">※</span></label>
-                <input type="text" class="form-control" id="nameInput" required>
+                <input type="text" name="name" class="form-control" id="nameInput" required>
             </div>
             <div class="mb-3">
                 <label for="contactInput" class="form-label">ご連絡先（メールアドレスまたは電話番号）<span style="color: yellow;">※</span></label>
-                <input type="text" class="form-control" id="contactInput" required>
+                <input type="text" name="contact" class="form-control" id="contactInput" required>
             </div>
             <div class="mb-3">
                 <label for="subjectSelect" class="form-label">ご用件<span style="color: yellow;">※</span></label>
-                <select class="form-select" id="subjectSelect">
+                <select class="form-select" name="subject" id="subjectSelect">
                     <option selected>選択してください...</option>
                     <option value="ゲーム制作">ゲーム制作について</option>
                     <option value="TikTokライブ配信">TikTokライブ配信について</option>
@@ -60,7 +60,7 @@
             </div>
             <div class="mb-3">
                 <label for="messageTextarea" class="form-label" style="color: yellow;">お問い合わせ内容※</label>
-                <textarea class="form-control" id="messageTextarea" rows="5" required></textarea>
+                <textarea class="form-control" name="message" id="messageTextarea" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">送信</button>
         </form>
