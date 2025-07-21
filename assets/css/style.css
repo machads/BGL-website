@@ -3,7 +3,7 @@
 :root {
     --luxe-gold: #FFD700; /* Rich, primary gold */
     --luxe-bg: #0d0d1a; /* A very dark, slightly blue-tinted black */
-    --luxe-cyan: #00f6ff;
+    --luxe-cyan: #00BFFF; /* Deep Sky Blue for better visibility */
     --luxe-magenta: #ff00ff;
     --luxe-white: #f0f0f0;
     --luxe-bg-transparent: rgba(13, 13, 26, 0.75);
@@ -43,6 +43,18 @@
     50% {
         opacity: 1;
         filter: drop-shadow(0 0 16px rgba(240, 240, 240, 1)) drop-shadow(0 0 24px rgba(240, 240, 240, 0.7));
+    }
+}
+
+/* Keyframes for futuristic text effect */
+@keyframes flicker-glow-yellow {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--luxe-gold), 0 0 20px var(--luxe-gold), 0 0 30px #B8860B;
+        opacity: 0.9;
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.7), 0 0 25px var(--luxe-gold), 0 0 40px var(--luxe-gold);
+        opacity: 0.95;
     }
 }
 
@@ -457,7 +469,7 @@ a.card-link:active .card-body {
 /* --- Hero Video Section --- */
 .hero-video-section {
     position: relative;
-    height: 100vh;
+    height: 60vh;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -468,34 +480,38 @@ a.card-link:active .card-body {
 
 #hero-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 80%;
-    min-height: 80%;
-    width: auto;
-    height: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     z-index: -1;
-    transform: translateX(-50%) translateY(-50%);
-    background-size: cover;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .video-overlay {
     position: relative;
     z-index: 1;
-    color: var(--luxe-white);
-    background: rgba(0, 0, 0, 0.5);
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 80%;
 }
 
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--luxe-gold);
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-    margin-bottom: 1rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    position: relative;
+    animation: flicker-glow-yellow 2s infinite;
+}
+
+/* --- Hero Subtitle Section --- */
+.hero-subtitle-section {
+    padding: 3rem 1rem;
+    text-align: center;
+    background: var(--luxe-bg-transparent);
+    border-top: 1px solid var(--luxe-gold);
+    box-shadow: 0 -5px 15px rgba(255, 215, 0, 0.1);
 }
 
 .hero-subtitle {
@@ -503,36 +519,41 @@ a.card-link:active .card-body {
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto;
+    color: var(--luxe-white);
+}
+
+/* Adjust main container margin */
+main.container {
+    margin-top: 4rem;
 }
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
     /* Hero Section */
     .hero-video-section {
-        height: 80vh; /* Adjust height for smaller screens */
+        height: 50vh;
     }
 
     .hero-title {
-        font-size: 2.2rem; /* Reduce font size for mobile */
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle-section {
+        padding: 2rem 1rem;
     }
 
     .hero-subtitle {
-        font-size: 1rem; /* Adjust subtitle font size */
-    }
-
-    .video-overlay {
-        max-width: 90%;
-        padding: 1.5rem;
+        font-size: 1rem;
     }
 
     /* Main Container */
-    .container {
+    main.container {
         padding: 1.5rem;
         margin-top: 2rem;
     }
 
     .container h1, .container h2, .container h3 {
-        font-size: 1.8rem; /* Adjust heading sizes */
+        font-size: 1.8rem;
         letter-spacing: 2px;
     }
 
@@ -544,6 +565,34 @@ a.card-link:active .card-body {
     .navbar-nav {
         text-align: center;
         margin-top: 1rem;
+    }
+}
+
+/* Further adjustments for smaller phone screens */
+@media (max-width: 480px) {
+    .hero-video-section {
+        height: 40vh; /* Further reduce height */
+    }
+
+    .hero-title {
+        font-size: 1.8rem; /* Further reduce font size */
+    }
+
+    .hero-subtitle-section {
+        padding: 1.5rem;
+    }
+
+    main.container {
+        margin-top: 1.5rem;
+        padding: 1rem;
+    }
+
+    .container h1, .container h2, .container h3 {
+        font-size: 1.5rem;
+    }
+
+    .news-title {
+        font-size: 1.1rem;
     }
 }
 
