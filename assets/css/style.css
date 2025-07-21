@@ -287,9 +287,10 @@ a.card-link:hover .card {
     transition: all 0.3s ease-in-out;
 }
 
-/* Apply pulsing animation to clickable card titles */
+/* Apply pulsing animation and underline to clickable card titles */
 a.card-link .card-title {
     animation: pulse-link 2.5s infinite ease-in-out;
+    text-decoration: underline;
 }
 
 /* Pause animation on hover */
@@ -360,7 +361,7 @@ a.card-link:active .card-body {
 
 .news-title a {
     color: var(--luxe-cyan);
-    text-decoration: none;
+    text-decoration: underline;
     transition: color 0.3s ease;
     animation: pulse-link 2.5s infinite ease-in-out;
 }
@@ -406,6 +407,17 @@ a.card-link:active .card-body {
 .game-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 246, 255, 0.3);
+}
+
+/* Make clickable card titles on short video page pulse and have an underline */
+.short-videos-page .card-body a .card-title {
+    animation: pulse-link 2.5s infinite ease-in-out;
+    text-decoration: underline;
+}
+
+/* Pause animation on hover */
+.short-videos-page .card-body a:hover .card-title {
+    animation-play-state: paused;
 }
 
 .card-title.external-link::after {
