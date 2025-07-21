@@ -505,3 +505,45 @@ a.card-link:active .card-body {
     margin: 0 auto;
 }
 
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero-video-section {
+        height: 80vh; /* Adjust height for smaller screens */
+    }
+
+    .hero-title {
+        font-size: 2.2rem; /* Reduce font size for mobile */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem; /* Adjust subtitle font size */
+    }
+
+    .video-overlay {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+
+    /* Main Container */
+    .container {
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .container h1, .container h2, .container h3 {
+        font-size: 1.8rem; /* Adjust heading sizes */
+        letter-spacing: 2px;
+    }
+
+    .news-title {
+        font-size: 1.2rem;
+    }
+
+    /* Navbar */
+    .navbar-nav {
+        text-align: center;
+        margin-top: 1rem;
+    }
+}
+
