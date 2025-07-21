@@ -287,6 +287,16 @@ a.card-link:hover .card {
     transition: all 0.3s ease-in-out;
 }
 
+/* Apply pulsing animation to clickable card titles */
+a.card-link .card-title {
+    animation: pulse-link 2.5s infinite ease-in-out;
+}
+
+/* Pause animation on hover */
+a.card-link:hover .card-title {
+    animation-play-state: paused;
+}
+
 a.card-link:active .card {
     border-color: var(--luxe-cyan);
     box-shadow: 0 0 10px var(--luxe-cyan);
@@ -294,11 +304,6 @@ a.card-link:active .card {
 
 a.card-link:active .card-body {
     color: var(--luxe-cyan) !important;
-}
-
-a.card-link:hover .card-title::after {
-    content: '→';
-    opacity: 1;
 }
 
 .bg-luxe-gold {
@@ -341,15 +346,29 @@ a.card-link:hover .card-title::after {
     letter-spacing: 1px;
 }
 
+/* Animation for clickable news links */
+@keyframes pulse-link {
+    0%, 100% {
+        color: var(--luxe-cyan);
+        text-shadow: 0 0 7px rgba(0, 246, 255, 0.6);
+    }
+    50% {
+        color: #9effff; /* A lighter, less saturated cyan to avoid being too white */
+        text-shadow: 0 0 15px rgba(0, 246, 255, 1);
+    }
+}
+
 .news-title a {
-    color: var(--luxe-gold);
+    color: var(--luxe-cyan);
     text-decoration: none;
     transition: color 0.3s ease;
+    animation: pulse-link 2.5s infinite ease-in-out;
 }
 
 .news-title a:hover {
     color: var(--luxe-white);
     text-decoration: underline;
+    animation-play-state: paused; /* Pause animation on hover */
 }
 
 .news-date {
