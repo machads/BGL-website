@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the entire site
+Allow: /images/
+Allow: /assets/
+Allow: /movies/
+
+# Disallow unnecessary files
+Disallow: /assets/js/
+Disallow: /assets/css/
+
+# Sitemap location
+Sitemap: https://bgl-website.vercel.app/sitemap.xml
+
+# Common crawl delay
+Crawl-delay: 1
