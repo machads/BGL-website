@@ -3,41 +3,45 @@ const splashScreen=document.getElementById('splash-screen');
 const body=document.body;
 const heroVideo=document.getElementById('hero-video');
 
-// モバイル検出とビデオ最適化
+// モバイル検出とビデオ最適化（最適化版）
 const isMobile=window.innerWidth<=768||/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const isSlowConnection=navigator.connection&&(navigator.connection.effectiveType==='slow-2g'||navigator.connection.effectiveType==='2g');
+const isSlowConnection=navigator.connection&&(['slow-2g','2g'].includes(navigator.connection.effectiveType));
 
 if(heroVideo){
-// モバイルまたは低速回線のみで動画を無効化
-if(isSlowConnection){
+// パフォーマンス向上のための最適化
+if(isSlowConnection||!window.requestIdleCallback){
 heroVideo.style.display='none';
 heroVideo.pause();
 heroVideo.removeAttribute('autoplay');
 }else{
-// 遅延読み込みでパフォーマンス向上
-setTimeout(()=>{
-heroVideo.load();
-},500);
+// アイドル時間に動画を読み込み
+if(window.requestIdleCallback){
+requestIdleCallback(()=>heroVideo.load(),{timeout:1000});
+}else{
+setTimeout(()=>heroVideo.load(),300);
+}
 }
 }
 
-if(splashScreen&&!sessionStorage.getItem('hasVisited')){
+// スプラッシュ画面の最適化
+const hasVisited=sessionStorage.getItem('hasVisited');
+if(splashScreen&&!hasVisited){
 sessionStorage.setItem('hasVisited','true');
 body.classList.add('loading');
 const splashLogo=document.getElementById('splash-logo');
+if(splashLogo){
 splashLogo.addEventListener('animationend',()=>{
 requestAnimationFrame(()=>{
 splashScreen.classList.add('hidden');
 body.classList.remove('loading');
 splashScreen.addEventListener('transitionend',()=>{
-splashScreen.style.display='none';
+splashScreen.remove();
 },{once:true});
 });
 },{once:true});
+}
 }else{
 body.classList.remove('loading');
-if(splashScreen){
-splashScreen.style.display='none';
-}
+if(splashScreen)splashScreen.remove();
 }
 });
