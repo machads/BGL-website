@@ -1,0 +1,8 @@
+{
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.ignoreFiles": [
+    "*.scss",
+    "*.sass"
+  ]
+}

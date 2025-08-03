@@ -3,22 +3,23 @@ const splashScreen=document.getElementById('splash-screen');
 const body=document.body;
 const heroVideo=document.getElementById('hero-video');
 
-// モバイル検出とビデオ最適化（最適化版）
+// モバイル検出とビデオ最適化（修正版）
 const isMobile=window.innerWidth<=768||/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 const isSlowConnection=navigator.connection&&(['slow-2g','2g'].includes(navigator.connection.effectiveType));
 
 if(heroVideo){
-// パフォーマンス向上のための最適化
-if(isSlowConnection||!window.requestIdleCallback){
+// 極端に低速な回線の場合のみ動画を無効化
+if(isSlowConnection&&navigator.connection.effectiveType==='slow-2g'){
 heroVideo.style.display='none';
 heroVideo.pause();
 heroVideo.removeAttribute('autoplay');
 }else{
-// アイドル時間に動画を読み込み
-if(window.requestIdleCallback){
-requestIdleCallback(()=>heroVideo.load(),{timeout:1000});
-}else{
-setTimeout(()=>heroVideo.load(),300);
+// 動画の読み込みを確実に行う
+heroVideo.load();
+// モバイルでの自動再生を確実にする
+if(isMobile){
+heroVideo.muted=true;
+heroVideo.setAttribute('playsinline','');
 }
 }
 }
