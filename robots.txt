@@ -11,7 +11,7 @@ Disallow: /assets/js/
 Disallow: /assets/css/
 
 # Sitemap location
-Sitemap: https://bgl-website.vercel.app/sitemap.xml
+Sitemap: https://www.bgl-ai.com/sitemap.xml
 
 # Common crawl delay
 Crawl-delay: 1
